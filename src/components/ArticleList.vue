@@ -64,9 +64,6 @@
 
     width: 130px;
     height: 130px;
-
-    /*background: url( ${ (props) => props.link  } ) center center;*/
-
     border-radius: 50%;
   }
   .article-title {
