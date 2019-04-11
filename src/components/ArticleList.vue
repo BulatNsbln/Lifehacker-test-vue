@@ -1,9 +1,9 @@
 <template>
   <div v-if="articleList.length">
     <ul class="article-list">
-      <li v-for="article in articleList" :key="`${article.id}`">
+      <li v-for="article in articleList" :key="`${article.id}`" class="article-item">
         <img class="image-cat" :src="article.cat_cover.sizes.mobile"/>
-        <router-link :to="`articles/${article.id}`">
+        <router-link :to="`articles/${article.id}`" class="article-title">
           <h2>{{article.title.rendered}}</h2>
         </router-link>
       </li>
@@ -11,6 +11,7 @@
   </div>
   <div v-else>
     <h1>Loading...</h1>
+
   </div>
 </template>
 
@@ -38,8 +39,19 @@
     padding: 0 15px;
     width: 80%;
     min-width: 370px;
-    background-color: #f5f5f5;
     list-style: none;
+  }
+  .article-item {
+    display: flex;
+    margin: 10px 10px;
+  }
+  .image-cat {
+    margin: 0px 5px;
+  }
+  .article-title {
+    color: black;
+    margin-left: 10px;
+    max-width: 600px;
   }
   @media(max-width: 400px) {
     .article-list {
@@ -56,5 +68,8 @@
     /*background: url( ${ (props) => props.link  } ) center center;*/
 
     border-radius: 50%;
+  }
+  .article-title {
+    margin-left: 5px;
   }
 </style>

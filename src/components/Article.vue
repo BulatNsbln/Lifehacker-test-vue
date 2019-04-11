@@ -1,6 +1,10 @@
 <template>
-  <div v-if="article">
-    <router-link to="/articles">Назад</router-link>
+  <div v-if="article" class="article">
+    <router-link to="/articles">
+      <md-button class="md-raised md-accent">
+        Главная
+      </md-button>
+    </router-link>
     <br/>
     <h1>{{article.title.rendered}}</h1>
     <br/>
@@ -35,5 +39,11 @@
 </script>
 
 <style>
-
+  .md-raised {
+    width: 100%;
+  }
+  .article {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
 </style>

@@ -4,6 +4,8 @@ import axios from 'axios';
 
 Vue.use(Vuex);
 
+const proxy = 'https://cors-anywhere.herokuapp.com/';
+
 const state = {
   articleHash: {},
   articleList: []
@@ -27,7 +29,7 @@ const actions = {
   loadArticles (context) {
     console.log('----', 'axios');
     axios
-      .get('https://lifehacker.ru/api/wp/v2/posts')
+      .get(proxy + 'https://lifehacker.ru/api/wp/v2/posts')
       .then( res => {
         context.commit('loadArticles', res.data);
       })
