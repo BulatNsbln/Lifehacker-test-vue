@@ -1,10 +1,13 @@
 <template>
-  <div>
+  <div v-if="article">
     <router-link to="/articles">Назад</router-link>
-    </br>
-    {{article.title.rendered}}
-    </br>
+    <br/>
+    <h1>{{article.title.rendered}}</h1>
+    <br/>
     <div v-html="`${article.content.rendered}`"></div>
+  </div>
+  <div v-else>
+    <h1>Loading...</h1>
   </div>
 </template>
 
@@ -13,26 +16,20 @@
 
   export default {
     name: 'Article',
-    data () {
-      return {
-        article: {}
+    computed: {
+      article() {
+          return this.$store.getters.articleHash(this.id)
       }
     },
     props: {
-      id: String
-    },
-    methods: {
-      loadArticle() {
-        const url = `https://lifehacker.ru/api/wp/v2/posts/${this.id}`;
-        axios.get(url)
-          .then((response) => {
-            this.article = response.data;
-          })
-          .catch((err) => global.console.log(err))
+      id:{
+        type: String,
+        required: true
       }
     },
-    mounted() {
-      this.loadArticle();
+    created() {
+      const { dispatch } = this.$store;
+      if(!this.article) dispatch('loadArticles');
     }
   }
 </script>
