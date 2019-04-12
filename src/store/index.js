@@ -8,7 +8,6 @@ const proxy = 'https://cors-anywhere.herokuapp.com/';
 
 const state = {
   articleHash: {},
-  articleList: []
 };
 
 const getters = {
@@ -21,13 +20,11 @@ const mutations = {
     payload.map( article => {
       Vue.set(state.articleHash, article.id, article);
     });
-    state.articleList = payload;
   }
 };
 
 const actions = {
   loadArticles (context) {
-    console.log('----', 'axios');
     axios
       .get(proxy + 'https://lifehacker.ru/api/wp/v2/posts')
       .then( res => {
