@@ -2,7 +2,7 @@
   <div v-if="articleList.length">
     <ul class="article-list">
       <li v-for="article in articleList" :key="`${article.id}`" class="article-item">
-        <img class="image-cat" :src="article.cat_cover.sizes.mobile"/>
+        <img class="image-cat" :src="article.cat_cover.sizes.mobile" alt="category"/>
         <router-link :to="`articles/${article.id}`" class="article-title">
           <h2>{{article.title.rendered}}</h2>
         </router-link>
@@ -11,7 +11,6 @@
   </div>
   <div v-else>
     <h1>Loading...</h1>
-
   </div>
 </template>
 
